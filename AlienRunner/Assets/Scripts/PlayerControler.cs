@@ -16,15 +16,21 @@ public class PlayerControler : MonoBehaviour {
 	}
 	void Update () 
 	{
-		Rd2D.velocity = new Vector2 (Mathf.Sign (Rd2D.velocity.x) * Maxspeed, Rd2D.velocity.y);
+		Rd2D.velocity = new Vector2 (Maxspeed, Rd2D.velocity.y);
 		Jump ();
 		SpeedContorl ();
 	}
 
     void OnTriggerEnter2D(Collider2D Hit)
     {
+        Debug.Log(Hit.gameObject.tag);
         if (Hit.gameObject.CompareTag("Ground"))
             Grounded = true;
+        if (Hit.gameObject.CompareTag("Wall"))
+        {
+            TempMaxspeed = -TempMaxspeed;
+            Maxspeed = -Maxspeed;
+        }
     }
 	void SpeedContorl()
 	{

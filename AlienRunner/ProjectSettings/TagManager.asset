@@ -5,6 +5,11 @@ TagManager:
   serializedVersion: 2
   tags:
   - Ground
+  - Flag
+  - Wall
+  - Crasher
+  - Edge
+  - Trap
   layers:
   - Default
   - TransparentFX
