@@ -6,28 +6,28 @@ public class CubeRaining : MonoBehaviour {
 	public GameObject Rainobj;
 	float Timer1=0f, Timer2=0f , Timer3=0f;
     public string Type;
-	public float zRange=10f ,xRange=10f;
+	public float Distanse,zRange=10f ,xRange=10f;
 	float zRand , xRand;
-	Vector3 vec1 , vec2;
+	public Vector3 vec1 , vec2;
 	/*یک کلمه می گیرد که جهت بارش ابجکت مورد نظر را مشخص می کند
 	*برای تعیین محل ابجکت که تولید می شود یکی از مولفه های ان ثابت است
 	*و دو تای دیگر رندم هستند که رنج انها قابل تنظیم است*/
 	void Update () 
 	{
-		if (Type == "Above")
+		if (Type == "XZ")
 		{
 			vec1 = Vector3.right;
 			vec2 = Vector3.forward;
 		}
 
-		if (Type == "Right")
+		if (Type == "YZ")
 		{
 			vec1 = Vector3.up;
 			vec2 = Vector3.forward;
 
 		}
 
-		if (Type == "Forward")
+		if (Type == "XY")
 		{
 			vec1 = Vector3.right;
 			vec2 = Vector3.up;
@@ -38,9 +38,9 @@ public class CubeRaining : MonoBehaviour {
 		if (Timer1 >= MakeCubespeed && Timer2 <=RainTime) 
 		{
 			//متخصات ابجکتی که کد به ان نسبت داده شده شده با دو عدد رندم جمع می شود 
-			xRand = Random.Range (-xRange, xRange);
+			xRand = Random.Range (0, xRange);
 			zRand = Random.Range (-zRange, zRange);
-			Instantiate (Rainobj, transform.position + (vec1 * xRand) + (Vector3.forward * zRand), transform.rotation);
+			Instantiate (Rainobj, transform.position + ((vec1 * (xRand + Distanse)) + (vec2 * zRand)), transform.rotation);
 			Timer1 = 0f;
 
 		}
